@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Wikipedia cikkek</h1>
+    
+    <form action="/filter" method="post">
+        <label for="minViews">Minimum megtekintések</label><br>
+        <input type="number" id="minViews" name="minViews" value="<%= minViews %>"><br>
+        <button type="submit">Szűrés</button>
+    </form>
+
+
+    <table>
+ 
+        <thead>
+            <tr>
+                <th>Szócikk címe</th>
+                <th>Látogatások száma</th>
+            </tr>
+        </thead>
+ 
+        <tbody>
+ 
+            <% for (const article of ArticleView) { %>
+ 
+                <% if (article.views > 1000) { %>
+ 
+                    <tr style="font-weight: bold;">
+ 
+                        <td>
+                            <a href="<%= article.url %>" target="_blank">
+                                <%= article.title %>
+                            </a>
+                        </td>
+ 
+                        <td>
+                            <%= article.views %>
+                        </td>
+ 
+                    </tr>
+ 
+                <% } else { %>
+ 
+                    <tr>
+ 
+                        <td>
+                            <a href="<%= article.url %>" target="_blank">
+                                <%= article.title %>
+                            </a>
+                        </td>
+ 
+                        <td>
+                            <%= article.views %>
+                        </td>
+ 
+                    </tr>
+ 
+                <% } %>
+ 
+            <% } %>
+ 
+        </tbody>
+ 
+    </table>
+</body>
+</html>
